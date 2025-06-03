@@ -39,15 +39,45 @@ def add(argv):
     print(f"\nExpense added successfully (ID: {id})")
 # update an expense (with id)
 
-def update():
-    pass
+def update(argv):
+    if len(argv) < 2:
+        print("You must add an ID")
+        return
+    try:
+        id = int(argv[2])
+    except ValueError:
+        print("Invalid ID format")
+
+    description = "".join(argv[4])
+    amount = "".join(argv[6])
+    if not description and amount:
+        print("No description or amount provided.")
+        return
+
+    expenses = load_expense()
+    found = False
+
+    for expense in expenses:
+        if expense["id"] == id:
+            expense["description"] = description
+            expense["amount"] = amount
+            found = True
+            break
+        
+    if found:
+        with open(JSON_FILE, "w") as f:
+            json.dump(expenses, f, indent=4)
+        print(f"Task with ID {id} updated.")
+    else:
+        print("ID not found")
+
 
 # delete an expense (with id)
 
 def delete():
     pass
-# view a summary of all expenses
 
+# view all expenses
 def viewAll():
     expenses = load_expense()
 
@@ -73,5 +103,7 @@ def main():
         add(argv)
     elif command == "list":
         viewAll()
+    elif command == 'update':
+        update(argv)
 if __name__ == "__main__":
     main()
