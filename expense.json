@@ -7,8 +7,14 @@
     },
     {
         "id": 2,
-        "date": "2025-06-02",
-        "description": "lunch",
-        "amount": "30"
+        "date": "2025-09-03",
+        "description": "Breakfast",
+        "amount": "76"
+    },
+    {
+        "id": 3,
+        "date": "2025-06-03",
+        "description": "motorbike",
+        "amount": "300"
     }
 ]
